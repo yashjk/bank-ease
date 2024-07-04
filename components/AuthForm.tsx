@@ -21,10 +21,11 @@ import CustomInput from "./CustomInput";
 import { authFormSchema } from "@/lib/utils";
 import { Loader2 } from "lucide-react";
 import { useRouter } from "next/navigation";
-import { signIn, signUp } from '../lib/actions/user.action';
+import { signIn, signUp } from "../lib/actions/user.action";
+import PlaidLink from "./PlaidLink";
 
 const AuthForm = ({ type }: { type: string }) => {
-  const router = useRouter();
+	const router = useRouter();
 	const [user, setUser] = useState(null);
 	const [isLoading, setIsLoading] = useState(false);
 
@@ -39,26 +40,36 @@ const AuthForm = ({ type }: { type: string }) => {
 	});
 
 	const onSubmit = async (data: z.infer<typeof formSchema>) => {
-		// Do something with the form values.
-		// ✅ This will be type-safe and validated.
 		setIsLoading(true);
+		const userData = {
+			firstName: data.firstName!,
+			lastName: data.lastName!,
+			address1: data.address1!,
+			city: data.city!,
+			state: data.state!,
+			postalCode: data.postalCode!,
+			dateOfBirth: data.dateOfBirth!,
+			ssn: data.ssn!,
+			email: data.email,
+			password: data.password,
+		};
 		try {
-      if (type === "sign-in") {
-        const response = await signIn({
-          email: data.email,
-          password: data.password,
-        })
-        if (response) router.push('/');
-      }
-      if (type === "sign-up") {
-        const newUser = await signUp(data);
-        setUser(newUser);
-      }
+			if (type === "sign-in") {
+				const response = await signIn({
+					email: data.email,
+					password: data.password,
+				});
+				if (response) router.push("/");
+			}
+			if (type === "sign-up") {
+				const newUser = await signUp(userData);
+				setUser(newUser);
+			}
 		} catch (error) {
 		} finally {
 			setIsLoading(false);
 		}
-	}
+	};
 
 	return (
 		<section className="auth-form">
@@ -75,7 +86,9 @@ const AuthForm = ({ type }: { type: string }) => {
 				</div>
 			</header>
 			{user ? (
-				<div className="flex flex-col gap-4">{/* Plaid Link */}</div>
+				<div className="flex flex-col gap-4">
+					<PlaidLink user={user} variant="primary" />
+				</div>
 			) : (
 				<>
 					<Form {...form}>
