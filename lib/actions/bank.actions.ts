@@ -30,11 +30,11 @@ export const getAccounts = async ({ userId }: getAccountsProps) => {
 
 				// get institution info from plaid
 				const institution = await getInstitution({
-					institutionId: accountsResponse.data.item.institution_id!,
+          institutionId: accountsResponse.data.item.institution_id!,
 				});
 
 				const account = {
-					id: accountData.account_id,
+          id: accountData.account_id,
 					availableBalance: accountData.balances.available!,
 					currentBalance: accountData.balances.current!,
 					institutionId: institution.institution_id,
@@ -114,14 +114,15 @@ export const getAccount = async ({ appwriteItemId }: getAccountProps) => {
 		};
 
 		// sort transactions by date such that the most recent transaction is first
+    const allTransactions = [...transactions].sort(
 		// const allTransactions = [...transactions, ...transferTransactions].sort(
-		// 	(a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
-		// );
+			(a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
+		);
 
-		// return parseStringify({
-		// 	data: account,
-		// 	transactions: allTransactions,
-		// });
+		return parseStringify({
+			data: account,
+			transactions: allTransactions,
+		});
 	} catch (error) {
 		console.error("An error occurred while getting the account:", error);
 	}
