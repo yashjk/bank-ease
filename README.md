@@ -1,36 +1,64 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# BankEase
+
+BankEase is a modern banking application built with TypeScript and Next.js, designed to provide a seamless user experience for managing finances.
+
+## Features
+
+- **User Authentication**: Sign up for an account and securely authenticate users.
+- **Plaid Integration**: Connect your bank account to the sandbox environment using Plaid for seamless financial data retrieval.
+- **Dashboard**: View recent transactions on the Dashboard and the Recent Transactions page.
+- **Bank Details**: Check your bank details on the My Banks page.
+- **Multiple Account Support**: Connect and manage multiple bank accounts.
+- **Real-time Funds Transfer**: Transfer funds between accounts using sharableId for instant transactions.
+
+## Tech Stack
+
+- **Frontend**: TypeScript, Next.js, TailwindCSS, shadcn/ui
+- **Backend**: Appwrite
+- **Data Visualization**: Chart.js
+- **Financial Integration**: Plaid, Dwolla
+- **Deployment**: Vercel
+- **Error Monitoring**: Sentry
 
 ## Getting Started
 
-First, run the development server:
+1. **Clone the repository**:
 
-```bash
+   ```
+   git clone https://github.com/yashjk/bank-ease.git
+   cd bank-ease
+   ```
+
+2. Install dependencies:
+   ```
+   npm install
+   ```
+   or
+   ```
+   yarn
+   ```
+3. Set up environment variables:
+
+Create a .env file based on the .env.example template and fill in the required credentials and configurations.
+You can obtain these credentials by signing up on the [Appwrite](https://appwrite.io/?utm_source=youtube&utm_content=reactnative&ref=JSmastery), [Plaid](https://plaid.com/) and [Dwolla](https://www.dwolla.com/)
+
+4. Run the application:
+
+```
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+```
+or 
+```
+yarn run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Contributing
+Contributions are welcome! If you'd like to contribute to BankEase, please follow these steps:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- Fork the repository.
+- Create a new branch `git checkout -b feature/your-feature-name`
+- Make your changes.
+- Commit your changes `git commit -am 'Add some feature'`
+- Push to the branch `git push origin feature/your-feature-name`
+- Create a new Pull Request.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
