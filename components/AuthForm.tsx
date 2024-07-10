@@ -66,6 +66,22 @@ const AuthForm = ({ type }: { type: string }) => {
 				setUser(newUser);
 			}
 		} catch (error) {
+			console.log(error);
+		} finally {
+			setIsLoading(false);
+		}
+	};
+
+	const testUserSignIn = async () => {
+		setIsLoading(true);
+		try {
+			const response = await signIn({
+				email: "test.user@example.com",
+				password: "123456789",
+			});
+			if (response) router.push("/");
+		} catch (error) {
+			console.log(error);
 		} finally {
 			setIsLoading(false);
 		}
@@ -186,6 +202,23 @@ const AuthForm = ({ type }: { type: string }) => {
 										"Sign Up"
 									)}
 								</Button>
+								{type === "sign-in" ? (
+									isLoading ? (
+										<Button
+											disabled className="form-btn">
+											<Loader2 size={20} className="animate-spin" /> &nbsp;
+											Logging In using test user...
+										</Button>
+									) : (
+										<Button
+											disabled={isLoading}
+											onClick={() => testUserSignIn()}
+											className="form-btn"
+										>
+											Login using Test User
+										</Button>
+									)
+								) : null}
 							</div>
 						</form>
 					</Form>
