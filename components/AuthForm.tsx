@@ -200,7 +200,7 @@ const AuthForm = ({ type }: { type: string }) => {
 								</Button>
 								{type === "sign-in" ? (
 									isLoading ? (
-										<Button disabled className="form-btn" c>
+										<Button disabled className="form-btn">
 											<Loader2 size={20} className="animate-spin" /> &nbsp;
 											Logging In using test user...
 										</Button>
