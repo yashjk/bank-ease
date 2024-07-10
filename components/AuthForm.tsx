@@ -67,8 +67,6 @@ const AuthForm = ({ type }: { type: string }) => {
 			}
 		} catch (error) {
 			console.log(error);
-		} finally {
-			setIsLoading(false);
 		}
 	};
 
@@ -82,8 +80,6 @@ const AuthForm = ({ type }: { type: string }) => {
 			if (response) router.push("/");
 		} catch (error) {
 			console.log(error);
-		} finally {
-			setIsLoading(false);
 		}
 	};
 
@@ -204,8 +200,7 @@ const AuthForm = ({ type }: { type: string }) => {
 								</Button>
 								{type === "sign-in" ? (
 									isLoading ? (
-										<Button
-											disabled className="form-btn">
+										<Button disabled className="form-btn" c>
 											<Loader2 size={20} className="animate-spin" /> &nbsp;
 											Logging In using test user...
 										</Button>
